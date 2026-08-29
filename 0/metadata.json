@@ -1,0 +1,94 @@
+{
+  "cli_version": "0.10.3",
+  "checkpoint_id": "01M16DS8JK3CRQEPY44NW4B866",
+  "session_id": "01a04cd7-4dc5-78f0-8884-19b6861e8381",
+  "strategy": "manual-commit",
+  "created_at": "2026-08-29T09:32:03.238685Z",
+  "branch": "master",
+  "checkpoints_count": 1,
+  "save_step_count": 1,
+  "files_touched": [
+    ".gitignore",
+    "README.md",
+    "package-lock.json",
+    "package.json",
+    "src/app.ts",
+    "src/server.ts",
+    "test/ping.test.mjs",
+    "tsconfig.json"
+  ],
+  "agent": "Codex",
+  "model": "gpt-5.6-luna",
+  "turn_id": "527962504af8",
+  "compact_transcript_start": 0,
+  "token_usage": {
+    "input_tokens": 20703,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 241408,
+    "output_tokens": 5311,
+    "api_call_count": 13
+  },
+  "session_metrics": {
+    "turn_count": 1
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-08-29T09:32:03.227349Z",
+    "agent_lines": 725,
+    "agent_removed": 0,
+    "human_added": 26,
+    "human_modified": 4,
+    "human_removed": 0,
+    "total_committed": 753,
+    "total_lines_changed": 755,
+    "agent_percentage": 96.02649006622516,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0
+    },
+    {
+      "checkpoint_number": 2,
+      "user_lines_added": 625,
+      "user_lines_removed": 2,
+      "agent_lines_added": 742,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".claude/settings.json": 95,
+        ".opencode/plugins/entire.ts": 269,
+        "README.md": 15,
+        "rust/Cargo.lock": 7,
+        "rust/Cargo.toml": 7,
+        "rust/src/lib.rs": 150,
+        "rust/src/main.rs": 42,
+        "rust/target/.rustc_info.json": 1,
+        "rust/target/CACHEDIR.TAG": 3,
+        "rust/target/debug/.fingerprint/ping-pong-api-2a89a1deb3830e4e/invoked.timestamp": 1,
+        "rust/target/debug/.fingerprint/ping-pong-api-2a89a1deb3830e4e/test-lib-ping_pong_api": 1,
+        "rust/target/debug/.fingerprint/ping-pong-api-2a89a1deb3830e4e/test-lib-ping_pong_api.json": 1,
+        "rust/target/debug/.fingerprint/ping-pong-api-6348ab4606d10367/invoked.timestamp": 1,
+        "rust/target/debug/.fingerprint/ping-pong-api-6348ab4606d10367/test-bin-ping-pong-api": 1,
+        "rust/target/debug/.fingerprint/ping-pong-api-6348ab4606d10367/test-bin-ping-pong-api.json": 1,
+        "rust/target/debug/.fingerprint/ping-pong-api-68dd159ddd583529/bin-ping-pong-api": 1,
+        "rust/target/debug/.fingerprint/ping-pong-api-68dd159ddd583529/bin-ping-pong-api.json": 1,
+        "rust/target/debug/.fingerprint/ping-pong-api-68dd159ddd583529/invoked.timestamp": 1,
+        "rust/target/debug/.fingerprint/ping-pong-api-7379cef0e13e60d9/invoked.timestamp": 1,
+        "rust/target/debug/.fingerprint/ping-pong-api-7379cef0e13e60d9/lib-ping_pong_api": 1,
+        "rust/target/debug/.fingerprint/ping-pong-api-7379cef0e13e60d9/lib-ping_pong_api.json": 1,
+        "rust/target/debug/deps/ping_pong_api-2a89a1deb3830e4e.d": 5,
+        "rust/target/debug/deps/ping_pong_api-6348ab4606d10367.d": 5,
+        "rust/target/debug/deps/ping_pong_api-68dd159ddd583529.d": 5,
+        "rust/target/debug/deps/ping_pong_api-7379cef0e13e60d9.d": 7,
+        "rust/target/debug/libping_pong_api.d": 1,
+        "rust/target/debug/ping-pong-api.d": 1
+      },
+      "user_removed_per_file": {
+        "README.md": 2
+      }
+    }
+  ]
+}
