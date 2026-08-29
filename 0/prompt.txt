@@ -1,13 +1,1 @@
-push, open MR
-
----
-
-add tests for js
-
----
-
-commit, push
-
----
-
-add all uncommitted changed files and commit
+commit it anyqy
