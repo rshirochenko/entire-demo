@@ -1,1 +1,2 @@
-Create a file named hello-entire.md with a short note explaining that this repo is my first Entire checkpoint demo.
+git add hello-entire.md
+git commit -m "Add first Entire demo file"
