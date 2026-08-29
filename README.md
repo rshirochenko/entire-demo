@@ -56,6 +56,17 @@ cargo run
 
 Run its tests with `cargo test`.
 
+## Zig
+
+Run locally with Zig 0.12 or newer:
+
+```bash
+cd zig
+zig run main.zig
+```
+
+Run its tests with `zig test main.zig`.
+
 ## Python
 
 Run locally with Python's standard library:
@@ -78,9 +89,9 @@ npm test
 
 ## Implementations
 
-The equivalent implementations live in [`go/`](go/), [`rust/`](rust/), and
-[`python/`](python/). Each directory is self-contained and includes its own
-run and test instructions.
+The equivalent implementations live in [`go/`](go/), [`rust/`](rust/),
+[`zig/`](zig/), and [`python/`](python/). Each directory is self-contained and
+includes its own run and test instructions.
 
 All implementations expose the same contract:
 
