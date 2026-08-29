@@ -1,0 +1,13 @@
+Please continue to completion, keeping changes confined to rust/. Run the focused tests and report the changed paths when done.
+
+---
+
+Please continue to completion, keeping changes confined to go/. Run the focused tests and report the changed paths when done.
+
+---
+
+commit, and push
+
+---
+
+Please finalize immediately: ensure the Go implementation and tests are written under go/, run available checks without blocking on long-lived servers, then return the changed paths and status.
