@@ -1,0 +1,9 @@
+use subagents, add go and rust implemnetations
+
+---
+
+Implement the existing ping-pong HTTP API in Go, using only a dedicated go/ directory (do not edit files outside go/). Match the TypeScript contract exactly: GET /ping -> 200 JSON {"message":"pong"} with application/json content type; non-GET /ping -> 405 JSON {"error":"Method Not Allowed"} plus Allow: GET; unknown routes -> 404 JSON {"error":"Not Found"}. Add idiomatic source, module metadata, and focused tests if appropriate. Make the changes directly in your workspace. Do not modify or delete existing files. In your final response, list every changed path and the commands/tests you ran.
+
+---
+
+Implement the existing ping-pong HTTP API in Rust, using only a dedicated rust/ directory (do not edit files outside rust/). Match the TypeScript contract exactly: GET /ping -> 200 JSON {"message":"pong"} with application/json content type; non-GET /ping -> 405 JSON {"error":"Method Not Allowed"} plus Allow: GET; unknown routes -> 404 JSON {"error":"Not Found"}. Prefer a small idiomatic dependency-light implementation, with Cargo metadata and focused tests if appropriate. Make the changes directly in your workspace. Do not modify or delete existing files. In your final response, list every changed path and the commands/tests you ran.
