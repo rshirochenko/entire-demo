@@ -1,0 +1,27 @@
+README.md
+  1aab24909fc758b1 29,35-36,87-88
+src/app.ts
+  1aab24909fc758b1 3-4,20-23,31,35-41,45-46,48-49
+test/ping.test.mjs
+  1aab24909fc758b1 5,7-8,27,31-53,56-78
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.5-ag",
+  "base_commit_sha": "28b69f55c2e7331e25db99bfaac225f7ec21317c",
+  "prompts": {
+    "1aab24909fc758b1": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a04cd7-4dc5-78f0-8884-19b6861e8381",
+        "model": "gpt-5.6-luna"
+      },
+      "human_author": "rshirochenko <rshirochenko@gmail.com>",
+      "messages": [],
+      "total_additions": 87,
+      "total_deletions": 27,
+      "accepted_lines": 75,
+      "overriden_lines": 0
+    }
+  }
+}
