@@ -53,3 +53,7 @@ merge feature/1
 ---
 
 squash feature/1 and merge
+
+---
+
+merge feature/2
