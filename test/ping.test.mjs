@@ -39,6 +39,16 @@ test("GET /ping increments the pong counter", async (t) => {
   assert.deepEqual(await response.json(), { message: "pong", count: 2 });
 });
 
+test("GET /ping accepts query parameters", async (t) => {
+  const { server, url } = await startTestServer();
+  t.after(() => server.close());
+
+  const response = await fetch(`${url}/ping?source=test`);
+
+  assert.equal(response.status, 200);
+  assert.deepEqual(await response.json(), { message: "pong", count: 1 });
+});
+
 test("successful pings are logged with their counter value", async (t) => {
   const logs = [];
   const { server, url } = await startTestServer((message) => logs.push(message));
@@ -84,6 +94,16 @@ test("unknown routes return 404", async (t) => {
 
   assert.equal(response.status, 404);
   assert.deepEqual(await response.json(), { error: "Not Found" });
+});
+
+test("unknown routes do not increment the pong counter", async (t) => {
+  const { server, url } = await startTestServer();
+  t.after(() => server.close());
+
+  await fetch(`${url}/unknown`);
+  const response = await fetch(`${url}/ping`);
+
+  assert.deepEqual(await response.json(), { message: "pong", count: 1 });
 });
 
 test("non-GET requests to /ping return 405", async (t) => {
