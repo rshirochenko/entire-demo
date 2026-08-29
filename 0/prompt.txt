@@ -41,3 +41,7 @@ commi, push, raise mr
 ---
 
 raise mr for feature/1
+
+---
+
+it should be counter implementation logic that we implemented
