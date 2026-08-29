@@ -1,6 +1,7 @@
 import type { IncomingMessage, ServerResponse } from "node:http";
 
 type JsonResponse = Record<string, string | number>;
+export type Logger = (message: string) => void;
 
 function sendJson(
   response: ServerResponse,
@@ -16,7 +17,7 @@ function sendJson(
   response.end(payload);
 }
 
-export function createRequestHandler() {
+export function createRequestHandler(logger: Logger = console.log) {
   let pongCount = 0;
 
   return function requestHandler(
@@ -36,6 +37,7 @@ export function createRequestHandler() {
       }
 
       pongCount += 1;
+      logger(`ping received; pong count=${pongCount}`);
       sendJson(response, 200, { message: "pong", count: pongCount });
       return;
     }

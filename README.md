@@ -32,6 +32,8 @@ curl http://localhost:3000/ping
 Only `GET /ping` is supported. Unknown routes return `404`, and other methods
 on `/ping` return `405`.
 
+Each successful ping is logged with the current pong counter.
+
 ## Go
 
 Run locally from the Go implementation directory:
