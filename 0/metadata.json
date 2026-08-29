@@ -1,0 +1,70 @@
+{
+  "cli_version": "0.10.3",
+  "checkpoint_id": "01M16HQD07NW736380YP5Z71GR",
+  "session_id": "01a04cd7-4dc5-78f0-8884-19b6861e8381",
+  "strategy": "manual-commit",
+  "created_at": "2026-08-29T10:40:56.909289Z",
+  "branch": "feature/3",
+  "checkpoints_count": 2,
+  "save_step_count": 3,
+  "files_touched": [
+    "rust/src/main.rs"
+  ],
+  "agent": "Codex",
+  "model": "gpt-5.6-luna",
+  "turn_id": "ed08bd61e64c",
+  "compact_transcript_start": 0,
+  "token_usage": {
+    "input_tokens": 134729,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 3675136,
+    "output_tokens": 30852,
+    "api_call_count": 93
+  },
+  "session_metrics": {
+    "turn_count": 21
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-08-29T10:40:56.868132Z",
+    "agent_lines": 28,
+    "agent_removed": 0,
+    "human_added": 728,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 756,
+    "total_lines_changed": 756,
+    "agent_percentage": 3.7037037037037033,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 2,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0
+    },
+    {
+      "checkpoint_number": 3,
+      "user_lines_added": 364,
+      "user_lines_removed": 0,
+      "agent_lines_added": 28,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".claude/settings.json": 95,
+        ".opencode/plugins/entire.ts": 269
+      }
+    },
+    {
+      "checkpoint_number": 4,
+      "user_lines_added": 364,
+      "user_lines_removed": 0,
+      "agent_lines_added": 28,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".claude/settings.json": 95,
+        ".opencode/plugins/entire.ts": 269
+      }
+    }
+  ]
+}
