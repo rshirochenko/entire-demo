@@ -1,0 +1,43 @@
+{
+  "cli_version": "0.10.3",
+  "checkpoint_id": "01M16E954GFCQHZ4DX0XK9X9D9",
+  "session_id": "ses_fb3258b8fffeIepYIBg6mnDNqy",
+  "strategy": "manual-commit",
+  "created_at": "2026-08-29T09:40:45.36257Z",
+  "branch": "master",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "rust/Cargo.lock",
+    "rust/Cargo.toml",
+    "rust/src/lib.rs",
+    "rust/src/main.rs"
+  ],
+  "agent": "OpenCode",
+  "model": "gpt-5.6-luna",
+  "turn_id": "07bb39aa7ca5",
+  "checkpoint_transcript_start": 11,
+  "transcript_lines_at_start": 11,
+  "compact_transcript_start": 11,
+  "token_usage": {
+    "input_tokens": 0,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 0,
+    "output_tokens": 0,
+    "api_call_count": 0
+  },
+  "session_metrics": {
+    "turn_count": 1
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-08-29T09:40:45.340076Z",
+    "agent_lines": 206,
+    "agent_removed": 0,
+    "human_added": 235,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 441,
+    "total_lines_changed": 441,
+    "agent_percentage": 46.71201814058957,
+    "metric_version": 2
+  }
+}
