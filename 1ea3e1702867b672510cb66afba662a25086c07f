@@ -1,0 +1,23 @@
+rust/src/main.rs
+  1aab24909fc758b1 43-70
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.5-ag",
+  "base_commit_sha": "1ea3e1702867b672510cb66afba662a25086c07f",
+  "prompts": {
+    "1aab24909fc758b1": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a04cd7-4dc5-78f0-8884-19b6861e8381",
+        "model": "gpt-5.6-luna"
+      },
+      "human_author": "rshirochenko <rshirochenko@gmail.com>",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 28,
+      "overriden_lines": 0
+    }
+  }
+}
