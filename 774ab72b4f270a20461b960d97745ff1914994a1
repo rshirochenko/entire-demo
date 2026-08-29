@@ -1,0 +1,23 @@
+hello-entire.md
+  9e3ec73edcb743a2 1-3
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.5-ag",
+  "base_commit_sha": "774ab72b4f270a20461b960d97745ff1914994a1",
+  "prompts": {
+    "9e3ec73edcb743a2": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a04cd4-8cf3-70a1-bf4a-cee5e1eba013",
+        "model": "gpt-5.6-luna"
+      },
+      "human_author": "rshirochenko <rshirochenko@gmail.com>",
+      "messages": [],
+      "total_additions": 3,
+      "total_deletions": 0,
+      "accepted_lines": 3,
+      "overriden_lines": 0
+    }
+  }
+}
