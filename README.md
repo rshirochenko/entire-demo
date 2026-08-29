@@ -26,7 +26,7 @@ export API_KEY="replace-with-your-api-key"
 
 ```bash
 curl http://localhost:3000/ping
-# {"message":"pong"}
+# {"message":"pong","count":1}
 ```
 
 Only `GET /ping` is supported. Unknown routes return `404`, and other methods
@@ -82,6 +82,7 @@ run and test instructions.
 
 All implementations expose the same contract:
 
-- `GET /ping` returns `200` with `{"message":"pong"}`.
+- `GET /ping` returns `200` with `{"message":"pong","count":n}` and
+  increments the in-memory pong counter.
 - Other methods on `/ping` return `405` with `Allow: GET`.
 - Unknown routes return `404` with `{"error":"Not Found"}`.
