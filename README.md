@@ -1,6 +1,6 @@
 # Ping-pong API
 
-Small HTTP API with TypeScript, Go, and Rust implementations.
+Small HTTP API with TypeScript, Rust, and Python implementations.
 
 ## TypeScript
 
@@ -24,18 +24,32 @@ curl http://localhost:3000/ping
 Only `GET /ping` is supported. Unknown routes return `404`, and other methods
 on `/ping` return `405`.
 
+## Python
+
+Run locally with Python's standard library:
+
+```bash
+python -m python.server
+```
+
+Run the Python tests:
+
+```bash
+python -m unittest discover -s python -p 'test_*.py'
+```
+
 ## Verify
 
 ```bash
 npm test
 ```
 
-## Go and Rust
+## Rust and Python
 
-The equivalent implementations live in [`go/`](go/) and [`rust/`](rust/).
+The equivalent implementations live in [`rust/`](rust/) and [`python/`](python/).
 Each directory is self-contained and includes its own run and test instructions.
 
-All three implementations expose the same contract:
+All implementations expose the same contract:
 
 - `GET /ping` returns `200` with `{"message":"pong"}`.
 - Other methods on `/ping` return `405` with `Allow: GET`.
