@@ -1,0 +1,5 @@
+push repo to gihub
+
+---
+
+add secret API_KEY=REDACTED in readme
