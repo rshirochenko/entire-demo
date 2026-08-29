@@ -1,0 +1,67 @@
+commit, push
+
+---
+
+API_KEY=REDACTED
+
+---
+
+run export REDACTED
+
+---
+
+run export  API_KEY=68e656b251e67e8358bef8483ab
+  0d51c6619f3e7a1a9f0e75838d41ff368f7
+  28
+
+---
+
+checkout in new branch feature/1
+
+---
+
+add pong counter
+
+---
+
+add tests
+
+---
+
+checkout in feature/2
+
+---
+
+add logger for ping counter
+
+---
+
+commi, push, raise mr
+
+---
+
+raise mr for feature/1
+
+---
+
+it should be counter implementation logic that we implemented
+
+---
+
+merge feature/1
+
+---
+
+squash feature/1 and merge
+
+---
+
+merge feature/2
+
+---
+
+checkhout to main, clean feature/1 and feature/2
+
+---
+
+pull, checkout to feature/3
