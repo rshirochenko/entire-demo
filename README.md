@@ -89,6 +89,20 @@ Run the Python tests:
 python -m unittest discover -s python -p 'test_*.py'
 ```
 
+## Lua
+
+The Lua implementation uses [LuaSocket](https://lunarmodules.github.io/luasocket/)
+for its HTTP listener:
+
+```bash
+luarocks install luasocket
+cd lua
+lua server.lua
+```
+
+The server listens on port `3000` by default. Set `PORT` or `HOST` to change
+the binding.
+
 ## Verify
 
 ```bash
@@ -104,6 +118,7 @@ The implementations live in:
 - Rust: [`rust/`](rust/)
 - Zig: [`zig/`](zig/)
 - Python: [`python/`](python/)
+- Lua: [`lua/`](lua/)
 
 Each implementation includes its own run and test instructions.
 
