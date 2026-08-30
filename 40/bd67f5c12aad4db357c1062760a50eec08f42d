@@ -1,0 +1,14 @@
+README.md
+  h_34eeedaef9debd 1
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "40bd67f5c12aad4db357c1062760a50eec08f42d",
+  "prompts": {},
+  "humans": {
+    "h_34eeedaef9debd": {
+      "author": "rshirochenko <rshirochenko@gmail.com>"
+    }
+  }
+}
