@@ -1,0 +1,24 @@
+lua/app.lua
+  s_468d73fc9b5858::t_b7976e90f4cb6b 1-32,36-74
+  s_468d73fc9b5858::t_8e23db4d5e868b 33-35
+lua/server.lua
+  s_468d73fc9b5858::t_b7976e90f4cb6b 1-21
+README.md
+  s_468d73fc9b5858::t_8e23db4d5e868b 92-105,121
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "688ead75b44739751b3d5f38436e32a33c946bda",
+  "prompts": {},
+  "sessions": {
+    "s_468d73fc9b5858": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a05086-df83-7c22-9a1b-283ca317e0ec",
+        "model": "gpt-5.6-luna"
+      },
+      "human_author": "rshirochenko <rshirochenko@gmail.com>"
+    }
+  }
+}
