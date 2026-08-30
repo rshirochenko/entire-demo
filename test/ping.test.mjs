@@ -2,10 +2,10 @@ import assert from "node:assert/strict";
 import { createServer } from "node:http";
 import { once } from "node:events";
 import test from "node:test";
-import { requestHandler } from "../dist/app.js";
+import { createRequestHandler } from "../dist/app.js";
 
-async function startTestServer() {
-  const server = createServer(requestHandler);
+async function startTestServer(logger) {
+  const server = createServer(createRequestHandler(logger));
   server.listen(0, "127.0.0.1");
   await once(server, "listening");
 
@@ -24,8 +24,66 @@ test("GET /ping returns pong", async (t) => {
   const response = await fetch(`${url}/ping`);
 
   assert.equal(response.status, 200);
-  assert.deepEqual(await response.json(), { message: "pong" });
+  assert.deepEqual(await response.json(), { message: "pong", count: 1 });
   assert.match(response.headers.get("content-type"), /application\/json/);
+});
+
+test("GET /ping increments the pong counter", async (t) => {
+  const { server, url } = await startTestServer();
+  t.after(() => server.close());
+
+  await fetch(`${url}/ping`);
+  const response = await fetch(`${url}/ping`);
+
+  assert.equal(response.status, 200);
+  assert.deepEqual(await response.json(), { message: "pong", count: 2 });
+});
+
+test("GET /ping accepts query parameters", async (t) => {
+  const { server, url } = await startTestServer();
+  t.after(() => server.close());
+
+  const response = await fetch(`${url}/ping?source=test`);
+
+  assert.equal(response.status, 200);
+  assert.deepEqual(await response.json(), { message: "pong", count: 1 });
+});
+
+test("successful pings are logged with their counter value", async (t) => {
+  const logs = [];
+  const { server, url } = await startTestServer((message) => logs.push(message));
+  t.after(() => server.close());
+
+  await fetch(`${url}/ping`);
+  await fetch(`${url}/ping`);
+
+  assert.deepEqual(logs, [
+    "ping received; pong count=1",
+    "ping received; pong count=2",
+  ]);
+});
+
+test("failed requests do not increment the pong counter", async (t) => {
+  const { server, url } = await startTestServer();
+  t.after(() => server.close());
+
+  const failedResponse = await fetch(`${url}/ping`, { method: "POST" });
+  const response = await fetch(`${url}/ping`);
+
+  assert.equal(failedResponse.status, 405);
+  assert.deepEqual(await response.json(), { message: "pong", count: 1 });
+});
+
+test("separate server instances have independent counters", async (t) => {
+  const first = await startTestServer();
+  const second = await startTestServer();
+  t.after(() => first.server.close());
+  t.after(() => second.server.close());
+
+  await fetch(`${first.url}/ping`);
+  const response = await fetch(`${second.url}/ping`);
+
+  assert.deepEqual(await response.json(), { message: "pong", count: 1 });
 });
 
 test("unknown routes return 404", async (t) => {
@@ -38,11 +96,54 @@ test("unknown routes return 404", async (t) => {
   assert.deepEqual(await response.json(), { error: "Not Found" });
 });
 
+test("unknown routes do not increment the pong counter", async (t) => {
+  const { server, url } = await startTestServer();
+  t.after(() => server.close());
+
+  await fetch(`${url}/unknown`);
+  const response = await fetch(`${url}/ping`);
+
+  assert.deepEqual(await response.json(), { message: "pong", count: 1 });
+});
+
 test("non-GET requests to /ping return 405", async (t) => {
   const { server, url } = await startTestServer();
   t.after(() => server.close());
 
   const response = await fetch(`${url}/ping`, { method: "POST" });
+
+  assert.equal(response.status, 405);
+  assert.equal(response.headers.get("allow"), "GET");
+  assert.deepEqual(await response.json(), { error: "Method Not Allowed" });
+});
+
+test("GET /multiply returns the product", async (t) => {
+  const { server, url } = await startTestServer();
+  t.after(() => server.close());
+
+  const response = await fetch(`${url}/multiply?a=6&b=-7`);
+
+  assert.equal(response.status, 200);
+  assert.deepEqual(await response.json(), { result: -42 });
+});
+
+test("GET /multiply rejects missing or invalid arguments", async (t) => {
+  const { server, url } = await startTestServer();
+  t.after(() => server.close());
+
+  for (const query of ["a=2", "a=x&b=2"]) {
+    const response = await fetch(`${url}/multiply?${query}`);
+
+    assert.equal(response.status, 400);
+    assert.deepEqual(await response.json(), { error: "a and b must be integers" });
+  }
+});
+
+test("non-GET requests to /multiply return 405", async (t) => {
+  const { server, url } = await startTestServer();
+  t.after(() => server.close());
+
+  const response = await fetch(`${url}/multiply?a=2&b=3`, { method: "POST" });
 
   assert.equal(response.status, 405);
   assert.equal(response.headers.get("allow"), "GET");

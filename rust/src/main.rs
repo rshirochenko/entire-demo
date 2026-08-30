@@ -40,3 +40,31 @@ fn parse_port(value: &str) -> io::Result<u16> {
             )
         })
 }
+
+#[cfg(test)]
+mod tests {
+    use super::parse_port;
+
+    #[test]
+    fn parse_port_accepts_valid_port_numbers() {
+        assert_eq!(parse_port("1").unwrap(), 1);
+        assert_eq!(parse_port("3000").unwrap(), 3000);
+        assert_eq!(parse_port("65535").unwrap(), 65535);
+    }
+
+    #[test]
+    fn parse_port_rejects_zero() {
+        assert!(parse_port("0").is_err());
+    }
+
+    #[test]
+    fn parse_port_rejects_non_numeric_values() {
+        assert!(parse_port("not-a-port").is_err());
+        assert!(parse_port("").is_err());
+    }
+
+    #[test]
+    fn parse_port_rejects_values_outside_u16_range() {
+        assert!(parse_port("65536").is_err());
+    }
+}

@@ -26,11 +26,13 @@ export API_KEY="replace-with-your-api-key"
 
 ```bash
 curl http://localhost:3000/ping
-# {"message":"pong"}
+# {"message":"pong","count":1}
 ```
 
 Only `GET /ping` is supported. Unknown routes return `404`, and other methods
 on `/ping` return `405`.
+
+Each successful ping is logged with the current pong counter.
 
 ## Go
 
@@ -54,6 +56,25 @@ cargo run
 
 Run its tests with `cargo test`.
 
+Run formal verification with [Kani](https://model-checking.github.io/kani/):
+
+```bash
+cargo install --locked kani-verifier
+cd rust
+cargo kani
+```
+
+## Zig
+
+Run locally with Zig 0.12 or newer:
+
+```bash
+cd zig
+zig run main.zig
+```
+
+Run its tests with `zig test main.zig`.
+
 ## Python
 
 Run locally with Python's standard library:
@@ -76,12 +97,13 @@ npm test
 
 ## Implementations
 
-The equivalent implementations live in [`go/`](go/), [`rust/`](rust/), and
-[`python/`](python/). Each directory is self-contained and includes its own
-run and test instructions.
+The equivalent implementations live in [`go/`](go/), [`rust/`](rust/),
+[`zig/`](zig/), and [`python/`](python/). Each directory is self-contained and
+includes its own run and test instructions.
 
 All implementations expose the same contract:
 
-- `GET /ping` returns `200` with `{"message":"pong"}`.
+- `GET /ping` returns `200` with `{"message":"pong","count":n}` and
+  increments the in-memory pong counter.
 - Other methods on `/ping` return `405` with `Allow: GET`.
 - Unknown routes return `404` with `{"error":"Not Found"}`.
