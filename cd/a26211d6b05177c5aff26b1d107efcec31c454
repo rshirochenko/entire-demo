@@ -1,0 +1,29 @@
+README.md
+  s_acd6ddf1e0e0bf::t_a8f3a6633a3ba4 100-108
+rust/src/lib.rs
+  s_468d73fc9b5858::t_0386599acc249f 174-181
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "cda26211d6b05177c5aff26b1d107efcec31c454",
+  "prompts": {},
+  "sessions": {
+    "s_468d73fc9b5858": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a05086-df83-7c22-9a1b-283ca317e0ec",
+        "model": "gpt-5.6-luna"
+      },
+      "human_author": "rshirochenko <rshirochenko@gmail.com>"
+    },
+    "s_acd6ddf1e0e0bf": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_faf783499ffeZvCFayWDMH4OKz",
+        "model": "gpt-5.6-luna"
+      },
+      "human_author": "rshirochenko <rshirochenko@gmail.com>"
+    }
+  }
+}
