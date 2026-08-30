@@ -116,3 +116,36 @@ test("non-GET requests to /ping return 405", async (t) => {
   assert.equal(response.headers.get("allow"), "GET");
   assert.deepEqual(await response.json(), { error: "Method Not Allowed" });
 });
+
+test("GET /multiply returns the product", async (t) => {
+  const { server, url } = await startTestServer();
+  t.after(() => server.close());
+
+  const response = await fetch(`${url}/multiply?a=6&b=-7`);
+
+  assert.equal(response.status, 200);
+  assert.deepEqual(await response.json(), { result: -42 });
+});
+
+test("GET /multiply rejects missing or invalid arguments", async (t) => {
+  const { server, url } = await startTestServer();
+  t.after(() => server.close());
+
+  for (const query of ["a=2", "a=x&b=2"]) {
+    const response = await fetch(`${url}/multiply?${query}`);
+
+    assert.equal(response.status, 400);
+    assert.deepEqual(await response.json(), { error: "a and b must be integers" });
+  }
+});
+
+test("non-GET requests to /multiply return 405", async (t) => {
+  const { server, url } = await startTestServer();
+  t.after(() => server.close());
+
+  const response = await fetch(`${url}/multiply?a=2&b=3`, { method: "POST" });
+
+  assert.equal(response.status, 405);
+  assert.equal(response.headers.get("allow"), "GET");
+  assert.deepEqual(await response.json(), { error: "Method Not Allowed" });
+});

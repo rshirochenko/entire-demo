@@ -42,6 +42,27 @@ export function createRequestHandler(logger: Logger = console.log) {
       return;
     }
 
+    if (requestUrl.pathname === "/multiply") {
+      if (request.method !== "GET") {
+        response.setHeader("Allow", "GET");
+        sendJson(response, 405, { error: "Method Not Allowed" });
+        return;
+      }
+
+      const aValue = requestUrl.searchParams.get("a");
+      const bValue = requestUrl.searchParams.get("b");
+      const a = Number(aValue);
+      const b = Number(bValue);
+
+      if (aValue === null || bValue === null || !Number.isInteger(a) || !Number.isInteger(b)) {
+        sendJson(response, 400, { error: "a and b must be integers" });
+        return;
+      }
+
+      sendJson(response, 200, { result: a * b });
+      return;
+    }
+
     sendJson(response, 404, { error: "Not Found" });
   };
 }
