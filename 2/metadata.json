@@ -1,0 +1,84 @@
+{
+  "cli_version": "0.10.3",
+  "checkpoint_id": "01M187SHQYM30HHN4W05CBB4PA",
+  "session_id": "ses_faf98e8a5ffe1k4G76MkisFFkD",
+  "strategy": "manual-commit",
+  "created_at": "2026-08-30T02:25:51.974406Z",
+  "branch": "master",
+  "checkpoints_count": 4,
+  "save_step_count": 4,
+  "files_touched": [
+    "README.md",
+    "rust/Cargo.toml",
+    "rust/src/lib.rs"
+  ],
+  "agent": "OpenCode",
+  "model": "gpt-5.6-luna",
+  "turn_id": "eba3d3d47dc3",
+  "compact_transcript_start": 0,
+  "token_usage": {
+    "input_tokens": 46286,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 514560,
+    "output_tokens": 3865,
+    "api_call_count": 23
+  },
+  "session_metrics": {
+    "turn_count": 4
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-08-30T02:25:51.962408Z",
+    "agent_lines": 0,
+    "agent_removed": 0,
+    "human_added": 79,
+    "human_modified": 67,
+    "human_removed": 0,
+    "total_committed": 93,
+    "total_lines_changed": 146,
+    "agent_percentage": 0,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 56,
+      "user_lines_removed": 17,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        "rust/src/lib.rs": 56
+      },
+      "user_removed_per_file": {
+        "rust/src/lib.rs": 17
+      }
+    },
+    {
+      "checkpoint_number": 2,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 56,
+      "agent_lines_removed": 17
+    },
+    {
+      "checkpoint_number": 3,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 56,
+      "agent_lines_removed": 17
+    },
+    {
+      "checkpoint_number": 4,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 93,
+      "agent_lines_removed": 189
+    },
+    {
+      "checkpoint_number": 5,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 93,
+      "agent_lines_removed": 189
+    }
+  ]
+}
