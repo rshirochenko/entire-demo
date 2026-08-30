@@ -1,0 +1,21 @@
+rust/src/lib.rs
+  s_acacb7a433f0e8::t_aa5861a84a8a57 6,15,19,27
+  s_acacb7a433f0e8::t_1472fdc8d897b0 113,123,131,139,166
+  s_acacb7a433f0e8::t_0c413f28536194 10,23-24,59,67,72-84,88,163-165,167-173
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "808e2b50218a33757d8d94eb9c4348820c8bc3d4",
+  "prompts": {},
+  "sessions": {
+    "s_acacb7a433f0e8": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a05043-43da-7fd3-a1b8-0320a900df78",
+        "model": "gpt-5.6-luna"
+      },
+      "human_author": "rshirochenko <rshirochenko@gmail.com>"
+    }
+  }
+}
