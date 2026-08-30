@@ -1,4 +1,4 @@
-# Ping-pong API
+# Ping-pong API [New]
 
 Small HTTP API with TypeScript, Go, Rust, and Python implementations.
 
