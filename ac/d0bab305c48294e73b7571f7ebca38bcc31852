@@ -1,0 +1,29 @@
+zig/main.zig
+  s_acacb7a433f0e8::t_071dcc9fa347af 14-43
+  s_acacb7a433f0e8::t_6ee6746d199bf5 134-152
+  s_09ed05414cc1ac::t_32d5a8f1ed7878 153-172
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "acd0bab305c48294e73b7571f7ebca38bcc31852",
+  "prompts": {},
+  "sessions": {
+    "s_09ed05414cc1ac": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_fafb6a9a2ffepX0pM4thpwlCMs",
+        "model": "gpt-5.6-luna"
+      },
+      "human_author": "rshirochenko <rshirochenko@gmail.com>"
+    },
+    "s_acacb7a433f0e8": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a05043-43da-7fd3-a1b8-0320a900df78",
+        "model": "gpt-5.6-luna"
+      },
+      "human_author": "rshirochenko <rshirochenko@gmail.com>"
+    }
+  }
+}
