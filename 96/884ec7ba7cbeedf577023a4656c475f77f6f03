@@ -1,0 +1,22 @@
+test/ping.test.mjs
+  s_09ed05414cc1ac::t_f771709fbed876 119-151
+src/app.ts
+  s_09ed05414cc1ac::t_2c432ef4823e82 52-55,57
+  s_09ed05414cc1ac::t_f771709fbed876 45-51,56,58-65
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "96884ec7ba7cbeedf577023a4656c475f77f6f03",
+  "prompts": {},
+  "sessions": {
+    "s_09ed05414cc1ac": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_fafb6a9a2ffepX0pM4thpwlCMs",
+        "model": "gpt-5.6-luna"
+      },
+      "human_author": "rshirochenko <rshirochenko@gmail.com>"
+    }
+  }
+}
