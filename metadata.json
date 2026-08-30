@@ -3,7 +3,7 @@
   "checkpoint_id": "01M187SHQYM30HHN4W05CBB4PA",
   "strategy": "manual-commit",
   "branch": "master",
-  "checkpoints_count": 12,
+  "checkpoints_count": 13,
   "files_touched": [
     "README.md",
     "rust/Cargo.toml",
@@ -30,13 +30,20 @@
       "compact_transcript": "/2/transcript.jsonl",
       "content_hash": "/2/content_hash.txt",
       "prompt": "/2/prompt.txt"
+    },
+    {
+      "metadata": "/3/metadata.json",
+      "transcript": "/3/full.jsonl",
+      "compact_transcript": "/3/transcript.jsonl",
+      "content_hash": "/3/content_hash.txt",
+      "prompt": "/3/prompt.txt"
     }
   ],
   "token_usage": {
-    "input_tokens": 126801,
+    "input_tokens": 193553,
     "cache_creation_tokens": 0,
-    "cache_read_tokens": 1364992,
-    "output_tokens": 8874,
-    "api_call_count": 53
+    "cache_read_tokens": 2654720,
+    "output_tokens": 13171,
+    "api_call_count": 85
   }
 }
