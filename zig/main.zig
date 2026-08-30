@@ -11,7 +11,36 @@ fn responseFor(method: []const u8, target: []const u8, count: *u64, buffer: []u8
     const path = target[0..path_end];
 
     if (!std.mem.eql(u8, path, "/ping")) {
-        return .{ .status = "404 Not Found", .body = "{\"error\":\"Not Found\"}" };
+        if (!std.mem.eql(u8, path, "/multiply")) {
+            return .{ .status = "404 Not Found", .body = "{\"error\":\"Not Found\"}" };
+        }
+
+        if (!std.mem.eql(u8, method, "GET")) {
+            return .{
+                .status = "405 Method Not Allowed",
+                .body = "{\"error\":\"Method Not Allowed\"}",
+                .allow_get = true,
+            };
+        }
+
+        const query_start = std.mem.indexOfScalar(u8, target, '?') orelse return .{
+            .status = "400 Bad Request",
+            .body = "{\"error\":\"a and b must be integers\"}",
+        };
+        var a: ?i64 = null;
+        var b: ?i64 = null;
+        var params = std.mem.splitScalar(u8, target[query_start + 1 ..], '&');
+        while (params.next()) |param| {
+            const separator = std.mem.indexOfScalar(u8, param, '=') orelse continue;
+            const key = param[0..separator];
+            const value = std.fmt.parseInt(i64, param[separator + 1 ..], 10) catch continue;
+            if (std.mem.eql(u8, key, "a")) a = value;
+            if (std.mem.eql(u8, key, "b")) b = value;
+        }
+        const product = @mulWithOverflow(a orelse return .{ .status = "400 Bad Request", .body = "{\"error\":\"a and b must be integers\"}" }, b orelse return .{ .status = "400 Bad Request", .body = "{\"error\":\"a and b must be integers\"}" });
+        if (product[1] != 0) return .{ .status = "400 Bad Request", .body = "{\"error\":\"a and b must be integers\"}" };
+        const body = try std.fmt.bufPrint(buffer, "{{\"result\":{d}}}", .{product[0]});
+        return .{ .status = "200 OK", .body = body };
     }
 
     if (!std.mem.eql(u8, method, "GET")) {
@@ -101,4 +130,43 @@ test "unknown routes return not found" {
 
     try std.testing.expectEqualStrings("404 Not Found", response.status);
     try std.testing.expectEqual(@as(u64, 0), count);
+}
+
+test "GET /multiply returns product" {
+    var count: u64 = 0;
+    var buffer: [128]u8 = undefined;
+    const response = try responseFor("GET", "/multiply?a=6&b=-7", &count, &buffer);
+
+    try std.testing.expectEqualStrings("200 OK", response.status);
+    try std.testing.expectEqualStrings("{\"result\":-42}", response.body);
+}
+
+test "multiply rejects missing or invalid arguments" {
+    var count: u64 = 0;
+    var buffer: [128]u8 = undefined;
+
+    const missing = try responseFor("GET", "/multiply?a=2", &count, &buffer);
+    try std.testing.expectEqualStrings("400 Bad Request", missing.status);
+    const invalid = try responseFor("GET", "/multiply?a=x&b=2", &count, &buffer);
+    try std.testing.expectEqualStrings("400 Bad Request", invalid.status);
+}
+
+test "non-GET /multiply is rejected with an allow header" {
+    var count: u64 = 0;
+    var buffer: [128]u8 = undefined;
+    const response = try responseFor("POST", "/multiply?a=2&b=3", &count, &buffer);
+
+    try std.testing.expectEqualStrings("405 Method Not Allowed", response.status);
+    try std.testing.expectEqualStrings("{\"error\":\"Method Not Allowed\"}", response.body);
+    try std.testing.expect(response.allow_get);
+    try std.testing.expectEqual(@as(u64, 0), count);
+}
+
+test "multiply rejects integer overflow" {
+    var count: u64 = 0;
+    var buffer: [128]u8 = undefined;
+    const response = try responseFor("GET", "/multiply?a=9223372036854775807&b=2", &count, &buffer);
+
+    try std.testing.expectEqualStrings("400 Bad Request", response.status);
+    try std.testing.expectEqualStrings("{\"error\":\"a and b must be integers\"}", response.body);
 }
