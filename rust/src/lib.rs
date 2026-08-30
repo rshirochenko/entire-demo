@@ -171,6 +171,14 @@ mod tests {
         assert_eq!(response_for("GET", "/multiply?a=2").status_code(), 400);
         assert_eq!(response_for("GET", "/multiply?a=x&b=2").status_code(), 400);
     }
+
+    #[test]
+    fn non_get_multiply_returns_method_not_allowed_with_allow_header() {
+        let response = response_for("POST", "/multiply?a=2&b=3");
+
+        assert_json_response(&response, 405, r#"{"error":"Method Not Allowed"}"#);
+        assert_eq!(response.allow(), Some("GET"));
+    }
 }
 
 #[cfg(kani)]

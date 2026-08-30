@@ -97,9 +97,15 @@ npm test
 
 ## Implementations
 
-The equivalent implementations live in [`go/`](go/), [`rust/`](rust/),
-[`zig/`](zig/), and [`python/`](python/). Each directory is self-contained and
-includes its own run and test instructions.
+The implementations live in:
+
+- TypeScript: [`src/`](src/)
+- Go: [`go/`](go/)
+- Rust: [`rust/`](rust/)
+- Zig: [`zig/`](zig/)
+- Python: [`python/`](python/)
+
+Each implementation includes its own run and test instructions.
 
 All implementations expose the same contract:
 
