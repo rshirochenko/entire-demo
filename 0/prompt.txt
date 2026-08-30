@@ -1,0 +1,13 @@
+hello
+
+---
+
+what is my session id?
+
+---
+
+what is my current branch?
+
+---
+
+add 1 rust test
