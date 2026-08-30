@@ -1,0 +1,23 @@
+README.md
+  s_2962c805249db6::t_9d1cce560805a6 59-66
+rust/Cargo.toml
+  s_2962c805249db6::t_b59ce354beb462 8-10
+rust/src/lib.rs
+  s_2962c805249db6::t_b59ce354beb462 151-179
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "8ee1fdb7028b066a525a51d35eeec02864442795",
+  "prompts": {},
+  "sessions": {
+    "s_2962c805249db6": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_faf98e8a5ffe1k4G76MkisFFkD",
+        "model": "gpt-5.6-luna"
+      },
+      "human_author": "rshirochenko <rshirochenko@gmail.com>"
+    }
+  }
+}
