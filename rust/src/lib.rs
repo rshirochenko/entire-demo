@@ -1,3 +1,4 @@
+use std::collections::HashMap;
 use std::io::{self, BufRead, BufReader, Write};
 use std::net::TcpStream;
 
@@ -28,7 +29,7 @@ impl HttpResponse {
         self.allow_get.then_some("GET")
     }
 
-    pub fn write_to<W: Write>(self, writer: &mut W) -> io::Result<()> {
+    pub fn write_to<W: Write>(&self, writer: &mut W) -> io::Result<()> {
         write!(
             writer,
             "HTTP/1.1 {} {}\r\nContent-Type: {}\r\nContent-Length: {}\r\n",
@@ -51,37 +52,56 @@ impl HttpResponse {
 pub fn response_for(method: &str, target: &str) -> HttpResponse {
     let path = target.split(['?', '#']).next().unwrap_or(target);
 
-    if path == "/ping" {
-        if method == "GET" {
-            return HttpResponse {
-                status_code: 200,
-                reason_phrase: "OK",
-                body: r#"{"message":"pong"}"#.to_owned(),
-                allow_get: false,
-            };
-        }
-
-        return HttpResponse {
-            status_code: 405,
-            reason_phrase: "Method Not Allowed",
-            body: r#"{"error":"Method Not Allowed"}"#.to_owned(),
-            allow_get: true,
-        };
+    match (path, method) {
+        ("/ping", "GET") => HttpResponse {
+            status_code: 200,
+            reason_phrase: "OK",
+            body: r#"{"message":"pong"}"#.to_owned(),
+            allow_get: false,
+        },
+        ("/multiply", "GET") => multiply_response(target),
+        ("/ping" | "/multiply", _) => method_not_allowed_response(),
+        _ => not_found_response(),
     }
+}
 
-    if path == "/multiply" {
-        if method != "GET" {
-            return HttpResponse { status_code: 405, reason_phrase: "Method Not Allowed", body: r#"{"error":"Method Not Allowed"}"#.to_owned(), allow_get: true };
-        }
-        let query = target.split_once('?').map(|(_, query)| query).unwrap_or("");
-        let values: std::collections::HashMap<_, _> = query.split('&').filter_map(|part| part.split_once('=')).collect();
-        let result = values.get("a").and_then(|v| v.parse::<i64>().ok()).zip(values.get("b").and_then(|v| v.parse::<i64>().ok()));
-        return match result {
-            Some((a, b)) => HttpResponse { status_code: 200, reason_phrase: "OK", body: format!(r#"{{"result":{}}}"#, a * b), allow_get: false },
-            None => HttpResponse { status_code: 400, reason_phrase: "Bad Request", body: r#"{"error":"a and b must be integers"}"#.to_owned(), allow_get: false },
-        };
+fn method_not_allowed_response() -> HttpResponse {
+    HttpResponse {
+        status_code: 405,
+        reason_phrase: "Method Not Allowed",
+        body: r#"{"error":"Method Not Allowed"}"#.to_owned(),
+        allow_get: true,
     }
+}
 
+fn multiply_response(target: &str) -> HttpResponse {
+    let query = target.split_once('?').map(|(_, query)| query).unwrap_or("");
+    let values: HashMap<_, _> = query
+        .split('&')
+        .filter_map(|part| part.split_once('='))
+        .collect();
+    let result = values
+        .get("a")
+        .and_then(|value| value.parse::<i64>().ok())
+        .zip(values.get("b").and_then(|value| value.parse::<i64>().ok()));
+
+    match result {
+        Some((a, b)) => HttpResponse {
+            status_code: 200,
+            reason_phrase: "OK",
+            body: format!(r#"{{"result":{}}}"#, a * b),
+            allow_get: false,
+        },
+        None => HttpResponse {
+            status_code: 400,
+            reason_phrase: "Bad Request",
+            body: r#"{"error":"a and b must be integers"}"#.to_owned(),
+            allow_get: false,
+        },
+    }
+}
+
+fn not_found_response() -> HttpResponse {
     HttpResponse {
         status_code: 404,
         reason_phrase: "Not Found",
@@ -163,7 +183,11 @@ mod tests {
 
     #[test]
     fn get_multiply_returns_product() {
-        assert_json_response(&response_for("GET", "/multiply?a=6&b=-7"), 200, r#"{"result":-42}"#);
+        assert_json_response(
+            &response_for("GET", "/multiply?a=6&b=-7"),
+            200,
+            r#"{"result":-42}"#,
+        );
     }
 
     #[test]
